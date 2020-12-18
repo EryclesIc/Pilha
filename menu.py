@@ -7,6 +7,7 @@ from linkedlist import LinkedList
 import pandas as pd
 
 dados_planilha = pd.read_csv("https://raw.githubusercontent.com/EryclesIc/Pilha/main/directory.csv", encoding="UTF-8")
+print(dados_planilha.columns.values)
 graph = {}
 vstd = {}
 edges = []
