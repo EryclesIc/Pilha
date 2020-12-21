@@ -1,23 +1,42 @@
-import queue
+from graph import latitudeLongitude
 from graph import grafoStarbucks
 import numpy as np
-# from prim import Prim
-# from geopy.distance import geodesic
-# import csv
+import random
 import pandas as pd
 
 dados_planilha = pd.read_csv("https://raw.githubusercontent.com/EryclesIc/Pilha/main/directory.csv", encoding="UTF-8")
-# print(dados_planilha.columns.values)
-# print(dados_planilha.Longitude[0])
-# print(dados_planilha.Latitude[0])
-latitude = dados_planilha.Latitude
-longitude = dados_planilha.Longitude
-store_number = dados_planilha['Store Number']
-matriz_adj = np.zeros((100, 100))
+quant_linhas = len(dados_planilha)
+print("Quantidade de linhas do dataframe é {}.\n".format(quant_linhas))
 
-print(dados_planilha)
-g = grafoStarbucks(dados_planilha.Latitude, dados_planilha.Longitude)
-g.montar_matriz()
+grafo = grafoStarbucks()
+
+def menu():
+    quantVertices = int(input("Digite a quantidade de vértices:\n"))
+    
+    for i in range(quantVertices):
+        linha_aleatoria = random.randint(0, quant_linhas)-1
+        linha = dados_planilha.iloc[linha_aleatoria]
+        print(linha)
+        #AQUI chame a função para adicionar as linhas no grafo
+        grafo.add_node(dados_planilha[0], linha)
+    print(grafo)
+        
+    # AQUI chame a função para mostrar todos os vértices dentro do grafo
+
+    
+    # mostra_adjacentes()
+    vertice1 = input("Escolha o vértice inicial:\n")
+    vertice2 = input("Escolha o vértice final:\n")
+    
+    # AQUI chame a função que vai calcular a menor distância entre esses nós
+    menu()
+menu()
+
+# matriz_adj = np.zeros((quant_linhas, quant_linhas))
+
+# print(dados_planilha)
+# g = latitudeLongitude(dados_planilha.Latitude, dados_planilha.Longitude)
+# g.montar_matriz()
 
 
 # print(g.distancia(0,1))
@@ -25,11 +44,11 @@ g.montar_matriz()
 
 
 
-graph = {}
-vstd = {}
-edges = []
-tree = {} 
-tam = 25600
+# graph = {}
+# vstd = {}
+# edges = []
+# tree = {} 
+# tam = 25600
 
 # n = tam
 
