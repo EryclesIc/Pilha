@@ -55,22 +55,21 @@ class grafoStarbucks:
         else:
             return None
 
-    def add_edge(self, frm, to, cost = 0):
+    def add_edge(self, frm, to, cost = 0, dataframe, n):
         if frm not in self.vert_dict:
-            self.add_vertex(frm)
+            self.add_vertex(frm, dataframe, n)
         if to not in self.vert_dict:
-            self.add_vertex(to)
+            self.add_vertex(to, dataframe, n)
 
         self.vert_dict[frm].add_neighbor(self.vert_dict[to], cost)
         self.vert_dict[to].add_neighbor(self.vert_dict[frm], cost)
 
-    def create_edge(self, quant_vertices):
-        for i in range(quant_vertices):
-            quant_edges = random.randint(0, quant_vertices)-1
-            vertex2 = random.randint(0, quant_vertices)-1
-            cost  = random.randint(0, quant_vertices*2)
-            for j in range(quant_edges):
-                self.add_edge(i, vertex2, cost)
+    def create_edge(self, frm, quant_vertices, dataframe):
+        quant_edges = random.randint(0, quant_vertices)-1
+        cost  = random.randint(0, quant_vertices*2)
+        for i in range(quant_edges):
+            vertex2 = random.randint(0, quant_vertices)-1   
+            self.add_edge(frm, vertex2, cost, dataframe, i)
 
     def get_vertices(self):
         return self.vert_dict.keys()

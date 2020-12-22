@@ -19,14 +19,24 @@ def menu():
         grafo.add_vertex(linha, dados_planilha, i)
         
     # AQUI chame a função para mostrar todos os vértices dentro do grafo
-    for j in range(quant_vertices): print(grafo.get_vertex(j))
+    for j in range(quant_vertices):
+        grafo.create_edge(j, quant_vertices, dados_planilha)
+    # for k in range(quant_vertices): print(grafo.get_vertex(k))
+    grafo.get_vertices()
+
     
-    # mostra_adjacentes()
-    vertice1 = input("Escolha o vértice inicial:\n")
-    vertice2 = input("Escolha o vértice final:\n")
+    # vertice1 = input("Escolha o vértice inicial:\n")
+    # vertice2 = input("Escolha o vértice final:\n")
     
+    # for v in range(quant_vertices):
+    #     for w in grafo.get_connections():
+    #         vid = v.get_id()
+    #         wid = w.get_id()
+    #         print(vid)
+    #         print ('( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w)))
+
+    # for v in grafo:
+    #     print ('grafo.vert_dict[%s]=%s' %(v.get_id(), grafo.vert_dict[v.get_id()]))
     # AQUI chame a função que vai calcular a menor distância entre esses nós
-    
-    
     menu()
 menu()
