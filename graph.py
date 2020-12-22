@@ -1,5 +1,6 @@
 import numpy as np
 from node import Node
+import random
 
 class Vertex:
     def __init__(self, node, dataframe, n):
@@ -44,7 +45,7 @@ class grafoStarbucks:
     def add_vertex(self, node, dataframe, n):
         self.num_vertices = self.num_vertices + 1
         new_vertex = Vertex(node, dataframe, n)
-        print(new_vertex)
+        # print(new_vertex)
         self.vert_dict[n] = new_vertex
         return new_vertex
 
@@ -54,9 +55,6 @@ class grafoStarbucks:
         else:
             return None
 
-    def create_edge(self):
-        pass
-
     def add_edge(self, frm, to, cost = 0):
         if frm not in self.vert_dict:
             self.add_vertex(frm)
@@ -65,6 +63,14 @@ class grafoStarbucks:
 
         self.vert_dict[frm].add_neighbor(self.vert_dict[to], cost)
         self.vert_dict[to].add_neighbor(self.vert_dict[frm], cost)
+
+    def create_edge(self, quant_vertices):
+        for i in range(quant_vertices):
+            quant_edges = random.randint(0, quant_vertices)-1
+            vertex2 = random.randint(0, quant_vertices)-1
+            cost  = random.randint(0, quant_vertices*2)
+            for j in range(quant_edges):
+                self.add_edge(i, vertex2, cost)
 
     def get_vertices(self):
         return self.vert_dict.keys()
