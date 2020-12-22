@@ -1,25 +1,37 @@
 import numpy as np
 from node import Node
 
-class latitudeLongitude:
-    def __init__(self, latitude, longitude):
-        self.latitude = latitude
-        self.longitude = longitude
-        self.matriz_adj = np.zeros((25600, 25600))
+# class latitudeLongitude:
+#     def __init__(self, latitude, longitude):
+#         self.latitude = latitude
+#         self.longitude = longitude
+#         self.matriz_adj = np.zeros((25600, 25600))
 
-    def distancia(self, i, j): 
-        return np.sqrt(((self.latitude[i] - self.latitude[j]) ** 2) + ((self.longitude[i] - self.longitude[j]) ** 2))
+#     def distancia(self, i, j): 
+#         return np.sqrt(((self.latitude[i] - self.latitude[j]) ** 2) + ((self.longitude[i] - self.longitude[j]) ** 2))
 
-    def montar_matriz(self):
-        for i in range(len(self.matriz_adj)):
-            for j in range(len(self.matriz_adj[i])):
-                self.matriz_adj[i][j] = self.distancia(i,j)
+#     def montar_matriz(self):
+#         for i in range(len(self.matriz_adj)):
+#             for j in range(len(self.matriz_adj[i])):
+#                 self.matriz_adj[i][j] = self.distancia(i,j)
 
 
 class Vertex:
-    def __init__(self, node):
+    def __init__(self, node, dataframe, n):
         self.id = node
         self.adjacent = {}
+        self.brand = dataframe.Brand[n]
+        self.store_number = dataframe['Store Number'][n]
+        self.ownership_type = dataframe['Ownership Type'][n]
+        self.street_address = dataframe['Street Address'][n]
+        self.city = dataframe.City[n]
+        self.state_province = dataframe['State/Province'][n]
+        self.country = dataframe.Country[n]
+        self.postcode = dataframe.Postcode[n]
+        self.phone_number = dataframe['Phone Number'][n]
+        self.timezone = dataframe.Timezone[n]
+        self.longitude = dataframe.Longitude[n]
+        self.latitude = dataframe.Latitude[n]
 
     def __str__(self):
         return str(self.id) + ' adjacent: ' + str([x.id for x in self.adjacent])
@@ -44,9 +56,10 @@ class grafoStarbucks:
     def __iter__(self):
         return iter(self.vert_dict.values())
 
-    def add_vertex(self, node):
+    def add_vertex(self, node, dataframe, n):
         self.num_vertices = self.num_vertices + 1
-        new_vertex = Vertex(node)
+        new_vertex = Vertex(node, dataframe, n)
+        print(new_vertex)
         self.vert_dict[node] = new_vertex
         return new_vertex
 
@@ -68,35 +81,35 @@ class grafoStarbucks:
     def get_vertices(self):
         return self.vert_dict.keys()
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    g = Graph()
+#     g = Graph()
 
-    g.add_vertex('a')
-    g.add_vertex('b')
-    g.add_vertex('c')
-    g.add_vertex('d')
-    g.add_vertex('e')
-    g.add_vertex('f')
+#     g.add_vertex('a')
+#     g.add_vertex('b')
+#     g.add_vertex('c')
+#     g.add_vertex('d')
+#     g.add_vertex('e')
+#     g.add_vertex('f')
 
-    g.add_edge('a', 'b', 7)  
-    g.add_edge('a', 'c', 9)
-    g.add_edge('a', 'f', 14)
-    g.add_edge('b', 'c', 10)
-    g.add_edge('b', 'd', 15)
-    g.add_edge('c', 'd', 11)
-    g.add_edge('c', 'f', 2)
-    g.add_edge('d', 'e', 6)
-    g.add_edge('e', 'f', 9)
+#     g.add_edge('a', 'b', 7)  
+#     g.add_edge('a', 'c', 9)
+#     g.add_edge('a', 'f', 14)
+#     g.add_edge('b', 'c', 10)
+#     g.add_edge('b', 'd', 15)
+#     g.add_edge('c', 'd', 11)
+#     g.add_edge('c', 'f', 2)
+#     g.add_edge('d', 'e', 6)
+#     g.add_edge('e', 'f', 9)
 
-    for v in g:
-        for w in v.get_connections():
-            vid = v.get_id()
-            wid = w.get_id()
-            print '( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w))
+#     for v in g:
+#         for w in v.get_connections():
+#             vid = v.get_id()
+#             wid = w.get_id()
+#             print '( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w))
 
-    for v in g:
-        print 'g.vert_dict[%s]=%s' %(v.get_id(), g.vert_dict[v.get_id()])
+#     for v in g:
+#         print 'g.vert_dict[%s]=%s' %(v.get_id(), g.vert_dict[v.get_id()])
 
 
 '''

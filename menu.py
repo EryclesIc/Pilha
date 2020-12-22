@@ -1,4 +1,3 @@
-from graph import latitudeLongitude
 from graph import grafoStarbucks
 import numpy as np
 import random
@@ -11,14 +10,14 @@ print("Quantidade de linhas do dataframe é {}.\n".format(quant_linhas))
 grafo = grafoStarbucks()
 
 def menu():
-    quantVertices = int(input("Digite a quantidade de vértices:\n"))
+    quant_vertices = int(input("Digite a quantidade de vértices:\n"))
     
-    for i in range(quantVertices):
+    for i in range(quant_vertices):
         linha_aleatoria = random.randint(0, quant_linhas)-1
         linha = dados_planilha.iloc[linha_aleatoria]
         print(linha)
         #AQUI chame a função para adicionar as linhas no grafo
-        grafo.add_node(dados_planilha[0], linha)
+        grafo.add_vertex(linha, dados_planilha, i)
     print(grafo)
         
     # AQUI chame a função para mostrar todos os vértices dentro do grafo
@@ -31,45 +30,3 @@ def menu():
     # AQUI chame a função que vai calcular a menor distância entre esses nós
     menu()
 menu()
-
-# matriz_adj = np.zeros((quant_linhas, quant_linhas))
-
-# print(dados_planilha)
-# g = latitudeLongitude(dados_planilha.Latitude, dados_planilha.Longitude)
-# g.montar_matriz()
-
-
-# print(g.distancia(0,1))
-# print(matriz_adj.shape)
-
-
-
-# graph = {}
-# vstd = {}
-# edges = []
-# tree = {} 
-# tam = 25600
-
-# n = tam
-
-
-
-# for i in range(n+1):
-# 	graph[i] = {}
-# #print(graph)
-
-# dados = {}
-
-# lista = LinkedList()
-# # prim_check = Prim()
-
-# for linha in range(2):
-#     #print(linha)
-
-#     elemento = dados_planilha.iloc[linha]
-#     lista.append(elemento)
-
-# print(lista)
-
-#prim_check.iniciar()
-#print("Custo da loja 0 para loja 1: ", tree[0][1])
