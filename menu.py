@@ -15,7 +15,6 @@ def menu():
     for i in range(quant_vertices):
         linha_aleatoria = random.randint(0, quant_linhas)-1
         linha = dados_planilha.iloc[linha_aleatoria]
-        print(linha)
         #AQUI chame a função para adicionar as linhas no grafo
         grafo.add_vertex(linha, dados_planilha, i)
     print(grafo)

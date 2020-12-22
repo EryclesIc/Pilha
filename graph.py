@@ -1,21 +1,6 @@
 import numpy as np
 from node import Node
 
-# class latitudeLongitude:
-#     def __init__(self, latitude, longitude):
-#         self.latitude = latitude
-#         self.longitude = longitude
-#         self.matriz_adj = np.zeros((25600, 25600))
-
-#     def distancia(self, i, j): 
-#         return np.sqrt(((self.latitude[i] - self.latitude[j]) ** 2) + ((self.longitude[i] - self.longitude[j]) ** 2))
-
-#     def montar_matriz(self):
-#         for i in range(len(self.matriz_adj)):
-#             for j in range(len(self.matriz_adj[i])):
-#                 self.matriz_adj[i][j] = self.distancia(i,j)
-
-
 class Vertex:
     def __init__(self, node, dataframe, n):
         self.id = node
@@ -34,7 +19,7 @@ class Vertex:
         self.latitude = dataframe.Latitude[n]
 
     def __str__(self):
-        return str(self.id) + ' adjacent: ' + str([x.id for x in self.adjacent])
+        return str(self.id) + ' adjacent: ' + str([n.id for n in self.adjacent])
 
     def add_neighbor(self, neighbor, weight=0):
         self.adjacent[neighbor] = weight
@@ -60,7 +45,7 @@ class grafoStarbucks:
         self.num_vertices = self.num_vertices + 1
         new_vertex = Vertex(node, dataframe, n)
         print(new_vertex)
-        self.vert_dict[node] = new_vertex
+        self.vert_dict[n] = new_vertex
         return new_vertex
 
     def get_vertex(self, n):
@@ -68,6 +53,9 @@ class grafoStarbucks:
             return self.vert_dict[n]
         else:
             return None
+
+    def create_edge(self):
+        pass
 
     def add_edge(self, frm, to, cost = 0):
         if frm not in self.vert_dict:
@@ -130,3 +118,16 @@ def dijkstra (grafo, source, dist):
             heapq.heappush(pq, (distancia+1, g[i]) )
     return dist
     '''
+# class latitudeLongitude:
+#     def __init__(self, latitude, longitude):
+#         self.latitude = latitude
+#         self.longitude = longitude
+#         self.matriz_adj = np.zeros((25600, 25600))
+
+#     def distancia(self, i, j): 
+#         return np.sqrt(((self.latitude[i] - self.latitude[j]) ** 2) + ((self.longitude[i] - self.longitude[j]) ** 2))
+
+#     def montar_matriz(self):
+#         for i in range(len(self.matriz_adj)):
+#             for j in range(len(self.matriz_adj[i])):
+#                 self.matriz_adj[i][j] = self.distancia(i,j)
