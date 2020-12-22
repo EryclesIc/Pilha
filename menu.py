@@ -17,15 +17,16 @@ def menu():
         linha = dados_planilha.iloc[linha_aleatoria]
         #AQUI chame a função para adicionar as linhas no grafo
         grafo.add_vertex(linha, dados_planilha, i)
-    print(grafo)
         
     # AQUI chame a função para mostrar todos os vértices dentro do grafo
-
+    for j in range(quant_vertices): print(grafo.get_vertex(j))
     
     # mostra_adjacentes()
     vertice1 = input("Escolha o vértice inicial:\n")
     vertice2 = input("Escolha o vértice final:\n")
     
     # AQUI chame a função que vai calcular a menor distância entre esses nós
+    
+    
     menu()
 menu()
