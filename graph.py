@@ -44,7 +44,7 @@ class grafoStarbucks:
     def add_vertex(self, node, dataframe, n):
         self.num_vertices = self.num_vertices + 1
         new_vertex = Vertex(node, dataframe, n)
-        print(new_vertex)
+        # print(new_vertex)
         self.vert_dict[n] = new_vertex
         return new_vertex
 
@@ -54,8 +54,8 @@ class grafoStarbucks:
         else:
             return None
 
-    def create_edge(self):
-        pass
+    def create_edge(self, n):
+        
 
     def add_edge(self, frm, to, cost = 0):
         if frm not in self.vert_dict:
