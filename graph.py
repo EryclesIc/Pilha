@@ -5,19 +5,20 @@ import random
 class Vertex:
     def __init__(self, node, dataframe, n):
         self.id = node
+        self.node = {}
         self.adjacent = {}
-        self.brand = dataframe.Brand[n]
-        self.store_number = dataframe['Store Number'][n]
-        self.ownership_type = dataframe['Ownership Type'][n]
-        self.street_address = dataframe['Street Address'][n]
-        self.city = dataframe.City[n]
-        self.state_province = dataframe['State/Province'][n]
-        self.country = dataframe.Country[n]
-        self.postcode = dataframe.Postcode[n]
-        self.phone_number = dataframe['Phone Number'][n]
-        self.timezone = dataframe.Timezone[n]
-        self.longitude = dataframe.Longitude[n]
-        self.latitude = dataframe.Latitude[n]
+        # self.brand = dataframe.Brand[n]
+        # self.store_number = dataframe['Store Number'][n]
+        # self.ownership_type = dataframe['Ownership Type'][n]
+        # self.street_address = dataframe['Street Address'][n]
+        # self.city = dataframe.City[n]
+        # self.state_province = dataframe['State/Province'][n]
+        # self.country = dataframe.Country[n]
+        # self.postcode = dataframe.Postcode[n]
+        # self.phone_number = dataframe['Phone Number'][n]
+        # self.timezone = dataframe.Timezone[n]
+        # self.longitude = dataframe.Longitude[n]
+        # self.latitude = dataframe.Latitude[n]
 
     def __str__(self):
         return str(self.id) + ' adjacent: ' + str([n.id for n in self.adjacent])

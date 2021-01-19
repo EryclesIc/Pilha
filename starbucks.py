@@ -1,4 +1,4 @@
-class Starbucks(object):
+class Starbucks:
     def __init__(self, data):
         self.brand = data.Brand
         self.store_number = data['Store Number']
@@ -10,19 +10,20 @@ class Starbucks(object):
         self.postcode = data.Postcode
         self.phone_number = data['Phone Number']
         self.timezone = data.Timezone
-        self.longitude = str(data.Longitude)
-        self.latitude = str(data.Latitude)
-    
-    def __str__(self):
-        return ('Brand: '+ self.brand + '\n'
-        'Store Number'+ self.store_number + '\n'
-        'Ownership Type'+ self.ownership_type + '\n'
-        'Street Address'+ self.street_address + '\n'
-        'City'+ self.city + '\n'
-        'State Province'+ self.state_province + '\n'
-        'Country'+ self.country + '\n'
-        'Postcode'+ self.postcode + '\n'
-        'Phone Number'+ self.phone_number + '\n'
-        'Timezone'+ self.timezone + '\n'
-        'Longitude'+ self.longitude + '\n'
-        'Latitude'+ self.latitude + '\n')
+        self.longitude = data.Longitude
+        self.latitude = data.Latitude
+
+    def __repr__(self):
+        return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %lf, %lf" %(self.brand,
+                                                                      self.store_number,
+                                                                      self.ownership_type,
+                                                                      self.street_address,
+                                                                      self.city,
+                                                                      self.state_province,
+                                                                      self.country,
+                                                                      self.postcode,
+                                                                      self.phone_number,
+                                                                      self.timezone,
+                                                                      self.longitude,
+                                                                      self.latitude)
+
