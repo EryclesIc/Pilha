@@ -15,15 +15,15 @@ class Starbucks:
 
     def __repr__(self):
         return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %lf, %lf" %(self.brand,
-                                                                      self.store_number,
-                                                                      self.ownership_type,
-                                                                      self.street_address,
-                                                                      self.city,
-                                                                      self.state_province,
-                                                                      self.country,
-                                                                      self.postcode,
-                                                                      self.phone_number,
-                                                                      self.timezone,
-                                                                      self.longitude,
-                                                                      self.latitude)
+                                                                    self.store_number,
+                                                                    self.ownership_type,
+                                                                    self.street_address,
+                                                                    self.city,
+                                                                    self.state_province,
+                                                                    self.country,
+                                                                    self.postcode,
+                                                                    self.phone_number,
+                                                                    self.timezone,
+                                                                    self.longitude,
+                                                                    self.latitude)
 

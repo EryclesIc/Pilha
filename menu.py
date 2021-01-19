@@ -9,7 +9,8 @@ dados_planilha = pd.read_csv("https://raw.githubusercontent.com/EryclesIc/Pilha/
 quant_linhas = len(dados_planilha)
 print("Quantidade de linhas do dataframe é {}.\n".format(quant_linhas))
 
-grande_bosta = Starbucks(dados_planilha)
+linha = dados_planilha.iloc[2]
+grande_bosta = Starbucks(linha)
 
 print(grande_bosta)
 
