@@ -19,32 +19,35 @@ def menu():
         indice_linha_aleatoria = random.randint(0, quant_linhas)-1
         linha_dataframe = dados_planilha.iloc[indice_linha_aleatoria]
         starbucks_linha = Starbucks(linha_dataframe)
-        # chave = starbucks_linha.store_number
-
         # AQUI chame a função para adicionar as linhas no grafo
         grafo.add_vertex(starbucks_linha)
     
+    # print(grafo.get_vertices())
+
+    for j in grafo:
+        j_id = j.get_id()
+        for k in grafo:
+            k_id = k.get_id()
+            peso = random.randint(0, quant_vertices)
+            grafo.add_edge(j_id, k_id, peso)
+            # print(j_id, k_id)
+
+    for v in grafo:
+        for w in v.get_connections():
+            vid = v.get_id()
+            wid = w.get_id()
+            print ('( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w)))
+
+    # no_inicial = input()
+    # no_final = input()
+
     print(grafo.get_vertices())
-        
-    # AQUI chame a função para mostrar todos os vértices dentro do grafo
-    # for j in range(quant_vertices):
-    #     grafo.create_edge(j, quant_vertices, dados_planilha)
-    # for k in range(quant_vertices): print(grafo.get_vertex(k))
-    # grafo.get_vertices()
 
-    
-    # vertice1 = input("Escolha o vértice inicial:\n")
-    # vertice2 = input("Escolha o vértice final:\n")
-    
-    # for v in range(quant_vertices):
-    #     for w in grafo.get_connections():
-    #         vid = v.get_id()
-    #         wid = w.get_id()
-    #         print(vid)
-    #         print ('( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w)))
+    # grafo_no_inicial = grafo.get_vertex(no_inicial)
+    # grafo_no_final = grafo.get_vertex(no_final)
 
-    # for v in grafo:
-    #     print ('grafo.vert_dict[%s]=%s' %(v.get_id(), grafo.vert_dict[v.get_id()]))
-    # AQUI chame a função que vai calcular a menor distância entre esses nós
+    # print(grafo_no_inicial, grafo_no_final)
+            
+    # grafo.dijkstra(grafo, grafo.get_vertex(no_inicial), grafo.get_vertex(no_final)) 
     menu()
 menu()
