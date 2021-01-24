@@ -26,4 +26,3 @@ class Starbucks:
                                                                     self.timezone,
                                                                     self.longitude,
                                                                     self.latitude)
-
