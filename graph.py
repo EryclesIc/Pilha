@@ -5,8 +5,9 @@ import sys
 import heapq
 
 class Vertex:
-    def __init__(self, node):
-        self.id = node
+    def __init__(self, node, id):
+        self.id = id
+        self.node = node
         self.adjacent = {}
         # Marca todos os nós como não visitados        
         self.visited = False  
@@ -48,10 +49,10 @@ class Graph:
     def __iter__(self):
         return iter(self.vert_dict.values())
 
-    def add_vertex(self, node):
+    def add_vertex(self, node, indice):
         self.num_vertices = self.num_vertices + 1
-        new_vertex = Vertex(node)
-        self.vert_dict[node] = new_vertex
+        new_vertex = Vertex(node, indice)
+        self.vert_dict[indice] = new_vertex
         return new_vertex
 
     def get_vertex(self, n):

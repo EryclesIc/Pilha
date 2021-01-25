@@ -20,9 +20,9 @@ def menu():
         linha_dataframe = dados_planilha.iloc[indice_linha_aleatoria]
         starbucks_linha = Starbucks(linha_dataframe)
         # AQUI chame a função para adicionar as linhas no grafo
-        grafo.add_vertex(starbucks_linha)
+        grafo.add_vertex(starbucks_linha, starbucks_linha.store_number)
     
-    # print(grafo.get_vertices())
+    print(grafo.get_vertices())
 
     for j in grafo:
         j_id = j.get_id()
@@ -38,15 +38,13 @@ def menu():
             wid = w.get_id()
             print ('( %s , %s, %3d)'  % ( vid, wid, v.get_weight(w)))
 
-    # no_inicial = input()
-    # no_final = input()
+    no_inicial = input()
+    no_final = input()
 
-    print(grafo.get_vertices())
+    grafo_no_inicial = grafo.get_vertex(no_inicial)
+    grafo_no_final = grafo.get_vertex(no_final)
 
-    # grafo_no_inicial = grafo.get_vertex(no_inicial)
-    # grafo_no_final = grafo.get_vertex(no_final)
-
-    # print(grafo_no_inicial, grafo_no_final)
+    print(grafo_no_inicial, grafo_no_final)
             
     # grafo.dijkstra(grafo, grafo.get_vertex(no_inicial), grafo.get_vertex(no_final)) 
     menu()
