@@ -1,5 +1,4 @@
 import numpy as np
-from node import Node
 import random
 import sys
 import heapq
@@ -9,6 +8,7 @@ class Vertex:
         self.id = id
         self.node = node
         self.adjacent = {}
+        self.distance = 0
         # Marca todos os nós como não visitados        
         self.visited = False  
         # Predecessor
@@ -87,46 +87,55 @@ class Graph:
             shortest(v.previous, path)
         return
 
-    
+    def short_path(self, src, dest):
 
-    def dijkstra(aGraph, start, target):
-        print ('''Dijkstra's shortest path''')
-        # Set the distance for the start node to zero 
-        start.set_distance(0)
+        path = []
+        map = self.vert_dict
+        black_list = []
 
-        # Put tuple pair into the priority queue
-        unvisited_queue = [(v.get_distance(),v) for v in aGraph]
-        heapq.heapify(unvisited_queue)
+        cur = src
+        prev = None
+        prevv = prev
 
-        while len(unvisited_queue):
-            # Pops a vertex with the smallest distance 
-            uv = heapq.heappop(unvisited_queue)
-            current = uv[1]
-            current.set_visited()
+        for n in range(200):
 
-            #for next in v.adjacent:
-            for next in current.adjacent:
-                # if visited, skip
-                if next.visited:
-                    continue
-                new_dist = current.get_distance() + current.get_weight(next)
-                
-                if new_dist < next.get_distance():
-                    next.set_distance(new_dist)
-                    next.set_previous(current)
-                    print ('updated : current = %s next = %s new_dist = %s' \
-                            %(current.get_id(), next.get_id(), next.get_distance()))
+            minor = None
+            minor_d = 99999999999999999999999999
+
+            if cur == dest:
+                break
+
+            elif map[cur] != []:
+                for x in map[cur]:
+                    if x not in path:
+                        if Vertex.get_distance(x.vector, dest.vector) < minor_d:
+                            minor = x
+                            minor_d = Vertex.get_distance(x.vector, dest.vector)
+
+                path.append(cur)
+                prevv = prev
+                prev = cur
+                cur = minor
+
+            else:
+                if cur != src:
+                    black_list.append(prev)
+                    map[prevv].remove(prev)
+                    cur = src
+                    path = []
                 else:
-                    print ('not updated : current = %s next = %s new_dist = %s' \
-                            %(current.get_id(), next.get_id(), next.get_distance()))
+                    break
 
-            # Rebuild heap
-            # 1. Pop every item
-            while len(unvisited_queue):
-                heapq.heappop(unvisited_queue)
-            # 2. Put all vertices not visited into the queue
-            unvisited_queue = [(v.get_distance(),v) for v in aGraph if not v.visited]
-            heapq.heapify(unvisited_queue)
+        path.append(Vertex.get_id(dest))
+
+        print("Distancia: ", end=" ")
+        print(len(path))
+        print(" ")
+        print("Caminho:")
+
+        for n in path:
+            print(n.unit_id)
+    
         
 # if __name__ == '__main__':
 

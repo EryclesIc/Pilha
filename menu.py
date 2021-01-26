@@ -1,9 +1,9 @@
-# from graph import grafoStarbucks
-import numpy as np
-import random
-import pandas as pd
 from starbucks import Starbucks
 from graph import Graph
+import pandas as pd
+import random
+import sys
+import heapq
 
 dados_planilha = pd.read_csv("https://raw.githubusercontent.com/EryclesIc/Pilha/main/directory.csv", encoding="UTF-8")
 
@@ -21,8 +21,6 @@ def menu():
         starbucks_linha = Starbucks(linha_dataframe)
         # AQUI chame a função para adicionar as linhas no grafo
         grafo.add_vertex(starbucks_linha, starbucks_linha.store_number)
-    
-    print(grafo.get_vertices())
 
     for j in grafo:
         j_id = j.get_id()
@@ -30,7 +28,6 @@ def menu():
             k_id = k.get_id()
             peso = random.randint(0, quant_vertices)
             grafo.add_edge(j_id, k_id, peso)
-            # print(j_id, k_id)
 
     for v in grafo:
         for w in v.get_connections():
@@ -44,8 +41,14 @@ def menu():
     grafo_no_inicial = grafo.get_vertex(no_inicial)
     grafo_no_final = grafo.get_vertex(no_final)
 
-    print(grafo_no_inicial, grafo_no_final)
-            
-    # grafo.dijkstra(grafo, grafo.get_vertex(no_inicial), grafo.get_vertex(no_final)) 
+    grafo.short_path(grafo_no_inicial, grafo_no_final)
+    # print(grafo_no_inicial, grafo_no_final)
+
+
+    # target = grafo.get_vertex(grafo_no_final)
+    # path = [target.get_id()]
+    # grafo.shortest(target, path)
+    # print ('The shortest path : %s' %(path[::-1]))
+    
     menu()
 menu()
